@@ -4,7 +4,9 @@
 
 "START..."
 #$trunkPath = "E:\CODES\DEV\200 - mis\report\trunk"
-$trunkPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$trunkPath = Split-Path -Parent $MyInvocation.MyCommand.Definition 
+$trunkPath += "\trunk"
+
 $allTrunkFiles = Get-ChildItem -LiteralPath $trunkPath -Recurse
 $copyList=@()
 $allTrunkFiles | Where-Object { $_.Length -ne $null } | foreach {
@@ -29,8 +31,10 @@ $allTrunkFiles | Where-Object { $_.Length -ne $null } | foreach {
      }
  }
 }
-"------------Total:$copyList.Count-------------"
+"=================================================================="
+"-------------------------Total:"+$copyList.Count+"-----------------------------"
 $copyList
-"------------Total:$copyList.Count-------------"
+"-------------------------Total:"+$copyList.Count+"-----------------------------"
+"=================================================================="
 "END..."
 read-host
