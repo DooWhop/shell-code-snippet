@@ -1,10 +1,10 @@
-
 #前提:系统开始栏搜索"powershell"以管理员权限启动,执行Set-ExecutionPolicy RemoteSigned,选择Y
-#1.文本编辑器打开CopyTrunk2Unit.ps1修改$trunkPath目录
-#2.可以在powershell中直接输入文件路径执行也可以在cmd中以"powershell.exe -file ps1脚本路径"
+#1.$trunkPath默认是当前脚本所在文件夹, 也可以文本编辑器打开CopyTrunk2Unit.ps1修改具体的$trunkPath目录
+#2.a.可以右键菜单powershell执行;b.可以在powershell中直接输入文件路径执行;c.可以在cmd中以"powershell.exe -file ps1脚本路径执行"
 
 "START..."
-$trunkPath = "E:\CODES\DEV\200 - mis\report\trunk"
+#$trunkPath = "E:\CODES\DEV\200 - mis\report\trunk"
+$trunkPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $allTrunkFiles = Get-ChildItem -LiteralPath $trunkPath -Recurse
 $copyList=@()
 $allTrunkFiles | Where-Object { $_.Length -ne $null } | foreach {
